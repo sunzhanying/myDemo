@@ -1,4 +1,4 @@
-package com.sunzy.demo.util.myrsa;
+package com.sunzy.demo.util.secret;
 
 import org.apache.commons.net.util.Base64;
 
@@ -14,7 +14,9 @@ import java.util.Map;
 
 /**
  * @author sunzy
- * <RSA加密解密工具类> 额外依赖 commons-net-3.3.jar,日志用的log4j，如果是其他的日志框架可以更改
+ * 【非对称加密】，生成一对公钥和私钥，调用方使用公钥，被调用方使用私钥
+ * 使用场景：两个系统嵌入使用，双方约定后进行权限校验
+ * 【RSA加密解密工具类>】额外依赖 commons-net-3.3.jar,日志用的log4j，如果是其他的日志框架可以更改
  * @date 2020/8/4
  */
 public class RsaUtils {
