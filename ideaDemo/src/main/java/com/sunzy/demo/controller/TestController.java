@@ -21,7 +21,7 @@ public class TestController {
     @RequestMapping(value = "/hello",method = RequestMethod.GET)
     @ResponseBody
     public String say(){
-        System.out.println("122222222222333333333333333333333");
+        System.out.println("12222222222233333333333333333333344");
         return "hello";
     }
 
