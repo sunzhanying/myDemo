@@ -1,6 +1,7 @@
 package com.sunzy.demo.controller;
 
-import com.sunzy.demo.util.ExcelUtils;
+import com.sunzy.demo.util.FileUtils;
+import com.sunzy.demo.util.excel.ExcelUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,6 +24,18 @@ public class TestController {
     public String say(){
         System.out.println("12222222222233333333333333333333344");
         return "hello";
+    }
+
+    @RequestMapping(value = "/download",method = RequestMethod.GET)
+    @ResponseBody
+    public void download(HttpServletResponse response){
+        System.out.println("download");
+        try{
+            FileUtils.downloadLocal(response);
+        }catch (Exception e){
+
+        }
+
     }
 
     //上传excel文件并解析
