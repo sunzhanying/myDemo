@@ -1,12 +1,16 @@
 package com.sunzy.demo.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.sunzy.demo.util.FileUtils;
 import com.sunzy.demo.util.excel.ExcelUtils;
+import com.sunzy.demo.util.patchca.CaptchaUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -24,6 +28,30 @@ public class TestController {
     public String say(){
         System.out.println("12222222222233333333333333333333344");
         return "hello";
+    }
+
+
+    @RequestMapping(value = "/getCaptcha",method = RequestMethod.GET)
+    @ResponseBody
+    public void getCaptcha(String userCode,HttpServletResponse response){
+        System.out.println("----- in getCaptcha -----");
+        StringBuilder code = new StringBuilder();
+        BufferedImage image = CaptchaUtils.getRandomCodeImage(code);
+        JSONObject json = new JSONObject();
+        json.put("key",userCode);
+        json.put("value",code);
+        json.put("flag","1");//1，标识图片验证码
+        json.put("time","300");//3分钟自动过期
+        //todo 保存进redis，或者放入到session中，用于登录时拿出做校验
+        System.out.println("json：" + json.toJSONString());
+        try{
+            response.setHeader("Content-Type","image/jpeg");
+            ImageIO.write(image,"JPEG",response.getOutputStream());
+        }catch (Exception e){
+
+        }
+
+
     }
 
     @RequestMapping(value = "/download",method = RequestMethod.GET)
