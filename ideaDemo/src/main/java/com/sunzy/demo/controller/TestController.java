@@ -38,7 +38,7 @@ public class TestController {
         StringBuilder code = new StringBuilder();
         BufferedImage image = CaptchaUtils.getRandomCodeImage(code);
         JSONObject json = new JSONObject();
-        json.put("key",userCode);
+        json.put("key",userCode);//前端传过来的随机数，用于关联前端输入验证码之后找到与后台对应存储的验证码，可用作redis的key
         json.put("value",code);
         json.put("flag","1");//1，标识图片验证码
         json.put("time","300");//3分钟自动过期
