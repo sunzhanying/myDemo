@@ -1,7 +1,7 @@
 package com.sunzy.demo.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.sunzy.demo.util.FileUtils;
+import com.sunzy.demo.util.fileUtils.FileUtils;
 import com.sunzy.demo.util.excel.ExcelUtils;
 import com.sunzy.demo.util.patchca.CaptchaUtils;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author sunzy
+ * @author sunzy 测试访问地址：http://127.0.0.1:8080/hello
  * @date 2019/10/18
  */
 @Controller

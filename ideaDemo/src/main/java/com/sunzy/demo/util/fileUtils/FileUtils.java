@@ -1,4 +1,4 @@
-package com.sunzy.demo.util;
+package com.sunzy.demo.util.fileUtils;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
