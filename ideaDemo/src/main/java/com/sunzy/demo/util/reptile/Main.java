@@ -16,13 +16,13 @@ import java.util.List;
 public class Main {
     public static  void  main(String [] args) {
 
-        for (int start = 0; start < 1; start ++)  {
+        for (int start = 1; start <= 10; start ++)  {
             try {
                 //String address = "https://Movie.douban.com/j/new_search_subjects?sort=U&range=0,10&tags=&start=" + start;
-                String address = "http://oa.senshishui.com:20000/default/order/customerlist/page/1";
+                String address = "http://oa.senshishui.com:20000/default/order/customerlist/page/" + start;
                 String currentStr = new GetJson().getHttpJson(address);
                 //System.out.println("currentStr:" + currentStr);
-                getDocFromStr(currentStr);
+                List<SenInfo> list = getDocFromStr(currentStr);
                 //如果是json格式
                 //JSONObject jsonObject = JSON.parseObject(currentStr);
             } catch (Exception e) {
@@ -31,7 +31,7 @@ public class Main {
         }
     }
 
-    private static String getDocFromStr(String str) throws Exception{
+    private static List<SenInfo> getDocFromStr(String str) throws Exception{
         Document document = Jsoup.parse(str);
         //解析HTML文件
         Elements td = document.getElementsByTag("td");
@@ -74,7 +74,7 @@ public class Main {
         System.out.println(listStr2);
         System.out.println(lists);
         System.out.println(list);
-        return "";
+        return list;
     }
 
     /**

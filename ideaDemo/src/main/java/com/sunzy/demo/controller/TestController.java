@@ -115,4 +115,30 @@ public class TestController {
         return "hello";
     }
 
+    //下载excel todo,爬虫信息 下载成excel
+    @GetMapping("/pc")
+    @ResponseBody
+    public String pc( HttpServletResponse response){
+        try{
+            System.out.println("in downloadExcel");
+            response.reset();//重置response
+            String name = "模板数据.xlsx";
+            String[] title = {"名称","内容"};
+            String[] text = {"内黄县","领导"};
+            List<Object[]> objects = new ArrayList<>();
+            objects.add(title);
+            objects.add(text);
+            response.setContentType("application/x-excel;charset=UTF-8");
+            response.setHeader("Content-Disposition","attachment;filename=" + URLEncoder.encode(name,"UTF-8"));
+            response.setCharacterEncoding("UTF-8");
+            // response.getOutputStream() 也可以指向固定目录的文件流
+            ExcelUtils.exportExcelToResponse(name,objects,"sheet007",response.getOutputStream());
+
+        }catch (Exception e){
+
+        }
+
+        return "hello";
+    }
+
 }
