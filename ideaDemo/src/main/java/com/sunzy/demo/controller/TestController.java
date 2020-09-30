@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.sunzy.demo.util.fileUtils.FileUtils;
 import com.sunzy.demo.util.excel.ExcelUtils;
 import com.sunzy.demo.util.patchca.CaptchaUtils;
+import com.sunzy.demo.util.reptile.ReptileMain;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -123,8 +124,9 @@ public class TestController {
             System.out.println("in downloadExcel");
             response.reset();//重置response
             String name = "模板数据.xlsx";
-            String[] title = {"名称","内容"};
+            String[] title = {"开户日期","客户编号","客户名称","电话","地址"};
             String[] text = {"内黄县","领导"};
+            List<Object[]> getObjArr = ReptileMain.getObjArr();
             List<Object[]> objects = new ArrayList<>();
             objects.add(title);
             objects.add(text);
@@ -140,5 +142,6 @@ public class TestController {
 
         return "hello";
     }
+
 
 }
