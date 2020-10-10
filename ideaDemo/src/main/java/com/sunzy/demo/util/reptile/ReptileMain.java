@@ -14,16 +14,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReptileMain {
+    private static String urlNoSort = "http://oa.senshishui.com:20000/default/order/customerlist/page/";
+    private static String url = "http://oa.senshishui.com:20000/default/order/customerlist/keywords//search/0/jointime/%E5%BC%80%E6%88%B7%E6%97%B6%E9%97%B4/sorttype/jointime/sort/ASC/page/";
+
     public static  void  main(String [] args) {
 
         for (int start = 1; start <= 2; start ++)  {
             try {
                 //String address = "https://Movie.douban.com/j/new_search_subjects?sort=U&range=0,10&tags=&start=" + start;
-                String address = "http://oa.senshishui.com:20000/default/order/customerlist/page/" + start;
+                String address = url + start;
                 String currentStr = new GetJson().getHttpJson(address);
                 //System.out.println("currentStr:" + currentStr);
                 List<SenInfo> list = getDocFromStr(currentStr);
-                System.out.println(list);
+                //System.out.println(list);
                 //如果是json格式
                 //JSONObject jsonObject = JSON.parseObject(currentStr);
             } catch (Exception e) {
@@ -38,7 +41,7 @@ public class ReptileMain {
         for (int start = 1; start <= 2; start ++) {
             try {
 
-                String address = "http://oa.senshishui.com:20000/default/order/customerlist/page/" + start;
+                String address = url + start;
                 String currentStr = new GetJson().getHttpJson(address);
                 List<SenInfo> listEntity = getDocFromStr(currentStr);
                 for(SenInfo senInfo:listEntity){
@@ -71,7 +74,7 @@ public class ReptileMain {
             Element element = td.get(i);
             String innerStr = element.html();
             listStr.add(innerStr);
-            System.out.println(innerStr);
+            //System.out.println(innerStr);
         }
         List<String> listStr2 = new ArrayList<>();
         /*for(int m = 0; m < listStr.size(); m++ ){
@@ -150,7 +153,7 @@ public class ReptileMain {
         List<SenInfo> listEntity = new ArrayList<>();
         for (int current = start; current <= end; current ++) {
             try {
-                String address = "http://oa.senshishui.com:20000/default/order/customerlist/page/" + current;
+                String address = url + current;
                 String currentStr = new GetJson().getHttpJson(address);
                 listEntity.addAll(getDocFromStr(currentStr));
             } catch (Exception e) {
