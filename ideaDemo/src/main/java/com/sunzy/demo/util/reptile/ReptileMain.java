@@ -12,6 +12,8 @@ import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ReptileMain {
     private static String urlNoSort = "http://oa.senshishui.com:20000/default/order/customerlist/page/";
@@ -19,20 +21,22 @@ public class ReptileMain {
 
     public static  void  main(String [] args) {
 
-        for (int start = 1; start <= 2; start ++)  {
+        /*for (int start = 1; start <= 2; start ++)  {
             try {
-                //String address = "https://Movie.douban.com/j/new_search_subjects?sort=U&range=0,10&tags=&start=" + start;
                 String address = url + start;
                 String currentStr = new GetJson().getHttpJson(address);
-                //System.out.println("currentStr:" + currentStr);
                 List<SenInfo> list = getDocFromStr(currentStr);
-                //System.out.println(list);
-                //如果是json格式
-                //JSONObject jsonObject = JSON.parseObject(currentStr);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+        }*/
+
+        /*String ss = "<a title=\"新悦辉abc\">新悦辉</a>";
+        //String mm = getRemoveTagValue(ss);
+
+        //String value = "fileNameCode-->_AD2467524284sd234.json";
+        String nn = getRemoveTagValue2(ss);
+        System.out.println(nn);*/
     }
 
     //String[] title = {"开户日期","客户编号","客户名称","电话","地址"};
@@ -93,10 +97,10 @@ public class ReptileMain {
             List<String> list1 = lists.get(i);
             senInfo.setBeginDate(list1.get(0));
             senInfo.setCode(list1.get(1));
-            String nameTemp = getRemoveTagValue(list1.get(2));
+            String nameTemp = getRemoveTagValue2(list1.get(2));
             senInfo.setName(nameTemp);
             senInfo.setPhone(list1.get(3));
-            String addressTemp = getRemoveTagValue(list1.get(4));
+            String addressTemp = getRemoveTagValue2(list1.get(4));
             senInfo.setAddress(addressTemp);
             //senInfo.setHref(list1.get(5));
             list.add(senInfo);
@@ -119,6 +123,29 @@ public class ReptileMain {
 
         }
         return s;
+    }
+
+    public static String getRemoveTagValue2(String value) {
+        String retStr = "";
+        // 内容
+        //String value = "fileNameCode-->_AD2467524284sd234.json";
+        // 匹配规则
+        //String reg = "_(.*?)\\.";
+
+        String reg = "title=\"(.*?)\"\\>";
+        Pattern pattern = Pattern.compile(reg);
+        // 内容 与 匹配规则 的测试
+        Matcher matcher = pattern.matcher(value);
+        if( matcher.find() ){
+            // 包含前后的两个字符
+            //System.out.println(matcher.group());
+            // 不包含前后的两个字符
+            //System.out.println( matcher.group(1) );
+            retStr = matcher.group(1);
+        }else{
+            System.out.println(" 没有匹配到内容....");
+        }
+        return retStr;
     }
 
     /**
@@ -155,6 +182,7 @@ public class ReptileMain {
             try {
                 String address = url + current;
                 String currentStr = new GetJson().getHttpJson(address);
+                System.out.println("完成页数：" + current);
                 listEntity.addAll(getDocFromStr(currentStr));
             } catch (Exception e) {
 
