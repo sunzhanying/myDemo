@@ -16,13 +16,14 @@ import java.util.List;
 public class ReptileMain {
     public static  void  main(String [] args) {
 
-        for (int start = 1; start <= 10; start ++)  {
+        for (int start = 1; start <= 2; start ++)  {
             try {
                 //String address = "https://Movie.douban.com/j/new_search_subjects?sort=U&range=0,10&tags=&start=" + start;
                 String address = "http://oa.senshishui.com:20000/default/order/customerlist/page/" + start;
                 String currentStr = new GetJson().getHttpJson(address);
                 //System.out.println("currentStr:" + currentStr);
                 List<SenInfo> list = getDocFromStr(currentStr);
+                System.out.println(list);
                 //如果是json格式
                 //JSONObject jsonObject = JSON.parseObject(currentStr);
             } catch (Exception e) {
@@ -31,9 +32,28 @@ public class ReptileMain {
         }
     }
 
+    //String[] title = {"开户日期","客户编号","客户名称","电话","地址"};
     public static List<Object[]> getObjArr() {
         List<Object[]> list = new ArrayList<>();
+        for (int start = 1; start <= 2; start ++) {
+            try {
 
+                String address = "http://oa.senshishui.com:20000/default/order/customerlist/page/" + start;
+                String currentStr = new GetJson().getHttpJson(address);
+                List<SenInfo> listEntity = getDocFromStr(currentStr);
+                for(SenInfo senInfo:listEntity){
+                    String[] text = new String[5];
+                    text[0] = senInfo.getBeginDate();
+                    text[1] = senInfo.getCode();
+                    text[2] = senInfo.getName();
+                    text[3] = senInfo.getPhone();
+                    text[4] = senInfo.getAddress();
+                    list.add(text);
+                }
+            } catch (Exception e) {
+
+            }
+        }
         return list;
     }
 
@@ -70,9 +90,11 @@ public class ReptileMain {
             List<String> list1 = lists.get(i);
             senInfo.setBeginDate(list1.get(0));
             senInfo.setCode(list1.get(1));
-            senInfo.setName(list1.get(2));
+            String nameTemp = getRemoveTagValue(list1.get(2));
+            senInfo.setName(nameTemp);
             senInfo.setPhone(list1.get(3));
-            senInfo.setAddress(list1.get(4));
+            String addressTemp = getRemoveTagValue(list1.get(4));
+            senInfo.setAddress(addressTemp);
             //senInfo.setHref(list1.get(5));
             list.add(senInfo);
         }
@@ -81,6 +103,19 @@ public class ReptileMain {
         System.out.println(lists);
         System.out.println(list);
         return list;
+    }
+
+    private static String getRemoveTagValue(String s) {
+        try{
+            Document document = Jsoup.parse(s);
+            Elements elements = document.getElementsByTag("a");
+            Element element = elements.get(0);
+            String innerStr = element.html();
+            return innerStr;
+        }catch (Exception e){
+
+        }
+        return s;
     }
 
     /**

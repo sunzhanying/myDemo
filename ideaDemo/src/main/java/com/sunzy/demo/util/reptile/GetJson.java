@@ -21,7 +21,7 @@ public class GetJson {
             connection.setRequestProperty("connection", "Keep-Alive");
             connection.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
             //设置登录的cookie
-            connection.setRequestProperty("Cookie", "PHPSESSID=fabc29631e32614d905f8ad9d55418b9");
+            connection.setRequestProperty("Cookie", "PHPSESSID=2af2591ec5bf23e0e287b42ef4ed9e8c");
             // 建立实际的连接
             connection.connect();
             //请求成功

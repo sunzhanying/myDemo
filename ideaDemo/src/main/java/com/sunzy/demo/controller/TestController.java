@@ -116,7 +116,7 @@ public class TestController {
         return "hello";
     }
 
-    //下载excel todo,爬虫信息 下载成excel
+    //爬虫信息 下载成excel
     @GetMapping("/pc")
     @ResponseBody
     public String pc( HttpServletResponse response){
@@ -125,11 +125,10 @@ public class TestController {
             response.reset();//重置response
             String name = "模板数据.xlsx";
             String[] title = {"开户日期","客户编号","客户名称","电话","地址"};
-            String[] text = {"内黄县","领导"};
             List<Object[]> getObjArr = ReptileMain.getObjArr();
             List<Object[]> objects = new ArrayList<>();
             objects.add(title);
-            objects.add(text);
+            objects.addAll(getObjArr);
             response.setContentType("application/x-excel;charset=UTF-8");
             response.setHeader("Content-Disposition","attachment;filename=" + URLEncoder.encode(name,"UTF-8"));
             response.setCharacterEncoding("UTF-8");
