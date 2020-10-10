@@ -101,10 +101,10 @@ public class ReptileMain {
             //senInfo.setHref(list1.get(5));
             list.add(senInfo);
         }
-        System.out.println(listStr);
-        System.out.println(listStr2);
-        System.out.println(lists);
-        System.out.println(list);
+        //System.out.println(listStr);
+        //System.out.println(listStr2);
+        //System.out.println(lists);
+        //System.out.println(list);
         return list;
     }
 

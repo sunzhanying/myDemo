@@ -368,14 +368,14 @@ public class RsaUtils {
 //            String publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCcMJ3IYh7zJ1KQiqtsc8X6eTamGfO8LUSTjfgXJqrGlJNINqexQQG2cBYO08gszzXaHeDbHs5lTeDWfXkLH0yGLV26K9GRNhBBFvvE1OVGWXeXXM6SV9sLJ2uLhRET+zqQcj7z33+8349VuWLUqJu4jgApZLjWXGezX3GL9jg9bQIDAQAB";
 //            String privateKey = "MIICeQIBADANBgkqhkiG9w0BAQEFAASCAmMwggJfAgEAAoGBAJwwnchiHvMnUpCKq2xzxfp5NqYZ87wtRJON+BcmqsaUk0g2p7FBAbZwFg7TyCzPNdod4NsezmVN4NZ9eQsfTIYtXbor0ZE2EEEW+8TU5UZZd5dczpJX2wsna4uFERP7OpByPvPff7zfj1W5YtSom7iOAClkuNZcZ7NfcYv2OD1tAgMBAAECgYEAjrhJ5Snr2AoNgvCDdeVQefC7BApg0omWyTIICbeWg0COWIVAtFKPaxJ+xWu11WQ+dCGrLu62cJE6KySaL5SZCfDME52Hvlay9jarAzSKNFD7EOYt8wxd9UhZiWrm2Y8O+sQqgg3STPrbOCU+d4wd8qau7QFzBoZcMsoRL4Dlu4ECQQDPQC7W1hZolZWFuZWk/47F54i2Au5xne7A8F7sKKWFhTTpZEiDIs+/RL+KmLeIeHg+zUgXsI0/s7RuwyCgLzPNAkEAwO3A+67pyfj2duynSXR47owWHmGM0FNknCTs9bj5azYasWDxGXW9CIW0JK5d1fveL5EMS7yovk10QzdWGjzQIQJBAIirmLfQAoMBcdL3qXlflfVoVD1C/Z8rORE+8jnmLBE64MOwgCkKQdmuKmnpf86dMx6nHQ2SPfNuPGR2hQNdXVkCQQC0ZNsAurFxn+/cjTVycoytCKGZ8L65AHDfq4tBy560B5f36Vwm4TdK47HoZn3pGqPLOEYV/yaNImEmhHRm/hvhAkEAhPZMgNq+w81eUpAgNMMzk0nt20W9aEBJ7B3hlhhwPPqDkhHjAU72x05e/+lFQnNal7nHMEVphR6bUcW8mcR2sw==";
 
-            System.out.println("公钥：" + publicKey);
-            System.out.println("私钥：" + privateKey);
+            //System.out.println("公钥：" + publicKey);
+            //System.out.println("私钥：" + privateKey);
 
             String msg = "1qaz!QAZ";
             String ecodeMsg = RsaUtils.encryptedDataByPublic(msg, publicKey);
-            System.out.println("加密后的信息：" + ecodeMsg);
+            //System.out.println("加密后的信息：" + ecodeMsg);
             String decodeMsg = RsaUtils.decryptDataByPrivate(ecodeMsg, privateKey);
-            System.out.println("解密后的信息：" + decodeMsg);
+            //System.out.println("解密后的信息：" + decodeMsg);
 
         } catch (Exception e) {
             e.printStackTrace();

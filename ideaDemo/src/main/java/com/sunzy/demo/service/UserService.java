@@ -23,7 +23,7 @@ public class UserService {
 
 
     public Integer  getCount(){
-        System.out.println("123");
+        //System.out.println("123");
         Integer list = userDao.getCount();
         return list;
         //return null;

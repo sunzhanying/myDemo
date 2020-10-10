@@ -39,7 +39,7 @@ public class TestController {
     @RequestMapping(value = "/hello",method = RequestMethod.GET)
     @ResponseBody
     public String say(){
-        System.out.println("12222222222233333333333333333333344");
+        //System.out.println("12222222222233333333333333333333344");
         return "hello";
     }
 
@@ -69,7 +69,7 @@ public class TestController {
     @RequestMapping(value = "/getCaptcha",method = RequestMethod.GET)
     @ResponseBody
     public void getCaptcha(String userCode,HttpServletResponse response){
-        System.out.println("----- in getCaptcha -----");
+        //System.out.println("----- in getCaptcha -----");
         StringBuilder code = new StringBuilder();
         BufferedImage image = CaptchaUtils.getRandomCodeImage(code);
         JSONObject json = new JSONObject();
@@ -78,7 +78,7 @@ public class TestController {
         json.put("flag","1");//1，标识图片验证码
         json.put("time","300");//3分钟自动过期
         //todo 保存进redis，或者放入到session中，用于登录时拿出做校验
-        System.out.println("json：" + json.toJSONString());
+        //System.out.println("json：" + json.toJSONString());
         try{
             response.setHeader("Content-Type","image/jpeg");
             ImageIO.write(image,"JPEG",response.getOutputStream());
@@ -92,7 +92,7 @@ public class TestController {
     @RequestMapping(value = "/download",method = RequestMethod.GET)
     @ResponseBody
     public void download(HttpServletResponse response){
-        System.out.println("download");
+        //System.out.println("download");
         try{
             FileUtils.downloadLocal(response);
         }catch (Exception e){
@@ -106,10 +106,10 @@ public class TestController {
     @ResponseBody
     public String uploadFile(@RequestParam(name = "file",required = true) MultipartFile file){
        try{
-           System.out.println("upload");
+           //System.out.println("upload");
            InputStream inputStream = file.getInputStream();
            String name = file.getOriginalFilename();
-           System.out.println("name" + name);
+           //System.out.println("name" + name);
            List<String[]> list =  ExcelUtils.readStringExcel(inputStream,name);
            StringBuffer sb = new StringBuffer();
            for(String[] s:list){
@@ -129,7 +129,7 @@ public class TestController {
     @ResponseBody
     public String downloadExcel( HttpServletResponse response){
         try{
-            System.out.println("in downloadExcel");
+            //System.out.println("in downloadExcel");
             response.reset();//重置response
             String name = "模板数据.xlsx";
             String[] title = {"名称","内容"};
@@ -155,7 +155,7 @@ public class TestController {
     @ResponseBody
     public String pc( HttpServletResponse response){
         try{
-            System.out.println("in downloadExcel");
+            //System.out.println("in downloadExcel");
             response.reset();//重置response
             String name = "模板数据.xlsx";
             String[] title = {"开户日期","客户编号","客户名称","电话","地址"};

@@ -84,10 +84,10 @@ public class AesUtils {
         String content = "hello,您好";
         //String key = "sde@5f98H*^hsff%dfs$r344&df8543*er";
         String key = "Nucc@cs.cmos2019";
-        System.out.println("content:" + content);
+        //System.out.println("content:" + content);
         String s1 = AesUtils.encrypt(content, key);
         String s2 = AesUtils.decrypt(s1, key);
-        System.out.println("加密后内容:" + s1);
-        System.out.println("解密后内容:" + s2);
+        //System.out.println("加密后内容:" + s1);
+        //System.out.println("解密后内容:" + s2);
     }
 }

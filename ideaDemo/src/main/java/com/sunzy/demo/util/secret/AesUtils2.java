@@ -90,11 +90,11 @@ public class AesUtils2 {
         String content = "hello,您好";//4JRSrkXxrgyw5PuLDaPsLg
         String key = "Nucc@cs.cmos2019";
         //String key = "legend131415926";
-        System.out.println("加密前：" + content);
-        System.out.println("加密密钥和解密密钥：" + key);
+        //System.out.println("加密前：" + content);
+        //System.out.println("加密密钥和解密密钥：" + key);
         String encrypt = aesEncrypt(content, key);
-        System.out.println("加密后：" + encrypt);
+        //System.out.println("加密后：" + encrypt);
         String decrypt = aesDecrypt(encrypt, key);
-        System.out.println("解密后：" + decrypt);
+        //System.out.println("解密后：" + decrypt);
     }
 }

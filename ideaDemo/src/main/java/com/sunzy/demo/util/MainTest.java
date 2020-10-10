@@ -39,9 +39,9 @@ public class MainTest {
                 }
             }).start();
             Map m = (Map)queue.poll(3000, TimeUnit.MILLISECONDS);//timeout参数为等待时间，如果是-1的话不阻塞
-            System.out.println(m);
+            //System.out.println(m);
             long time2 = System.currentTimeMillis();
-            System.out.println("时间差：" + (time2 - time1));
+            //System.out.println("时间差：" + (time2 - time1));
         }catch (Exception e){
 
         }
