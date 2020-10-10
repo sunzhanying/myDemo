@@ -96,16 +96,33 @@
             <version>4.5.6</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/xml-apis/xml-apis -->
+        <!-- html格式转document -->
         <dependency>
-            <!--<groupId>xml-apis</groupId>
-            <artifactId>xml-apis</artifactId>
-            <version>2.0.0</version>-->
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
             <version>1.11.3</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
 
     </dependencies>
 

@@ -1,10 +1,13 @@
 package com.sunzy.demo.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.sunzy.demo.beans.UserEntity;
+import com.sunzy.demo.service.UserService;
 import com.sunzy.demo.util.fileUtils.FileUtils;
 import com.sunzy.demo.util.excel.ExcelUtils;
 import com.sunzy.demo.util.patchca.CaptchaUtils;
 import com.sunzy.demo.util.reptile.ReptileMain;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,11 +27,16 @@ import java.util.List;
 @Controller
 public class TestController {
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "/hello",method = RequestMethod.GET)
     @ResponseBody
     public String say(){
         System.out.println("12222222222233333333333333333333344");
-        return "hello";
+        Integer integer = userService.getCount();
+        List<UserEntity> list = userService.getAll();
+        return "hello" + list.size();
     }
 
 
