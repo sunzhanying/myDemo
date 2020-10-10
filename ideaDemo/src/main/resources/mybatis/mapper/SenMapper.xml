@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunzy.demo.dao.SenDao" >
+
+    <select id="getCount" resultType="java.lang.Integer"  >
+        SELECT
+        count(1)
+        FROM users
+    </select>
+
+    <insert id="insertSen" parameterType="com.sunzy.demo.beans.SenEntity" >
+        INSERT INTO
+        sen
+        (beginDate,code,name,phone,address)
+        VALUES
+        (#{beginDate}, #{code}, #{name}, #{phone}, #{address})
+    </insert>
+
+</mapper>

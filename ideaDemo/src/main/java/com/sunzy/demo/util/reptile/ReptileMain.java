@@ -144,4 +144,19 @@ public class ReptileMain {
         }
         return result;
     }
+
+
+    public static List<SenInfo> initDb(int start,int end) {
+        List<SenInfo> listEntity = new ArrayList<>();
+        for (int current = start; current <= end; current ++) {
+            try {
+                String address = "http://oa.senshishui.com:20000/default/order/customerlist/page/" + current;
+                String currentStr = new GetJson().getHttpJson(address);
+                listEntity.addAll(getDocFromStr(currentStr));
+            } catch (Exception e) {
+
+            }
+        }
+        return listEntity;
+    }
 }

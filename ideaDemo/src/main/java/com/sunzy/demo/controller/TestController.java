@@ -1,12 +1,15 @@
 package com.sunzy.demo.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.sunzy.demo.beans.SenEntity;
 import com.sunzy.demo.beans.UserEntity;
+import com.sunzy.demo.service.SenService;
 import com.sunzy.demo.service.UserService;
 import com.sunzy.demo.util.fileUtils.FileUtils;
 import com.sunzy.demo.util.excel.ExcelUtils;
 import com.sunzy.demo.util.patchca.CaptchaUtils;
 import com.sunzy.demo.util.reptile.ReptileMain;
+import com.sunzy.demo.util.reptile.SenInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -30,13 +33,36 @@ public class TestController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private SenService senService;
+
     @RequestMapping(value = "/hello",method = RequestMethod.GET)
     @ResponseBody
     public String say(){
         System.out.println("12222222222233333333333333333333344");
-        Integer integer = userService.getCount();
-        List<UserEntity> list = userService.getAll();
-        return "hello" + list.size();
+        return "hello";
+    }
+
+    //    http://localhost:8080/initDb?start=1&end=3
+    @RequestMapping(value = "/initDb",method = RequestMethod.GET)
+    @ResponseBody
+    public String initDb(Integer start,Integer end){
+        List<SenInfo> list1 = ReptileMain.initDb(start,end);
+        for(SenInfo senInfo : list1){
+            SenEntity senEntityDb = convertEntity(senInfo);
+            senService.insertSen(senEntityDb);
+        }
+        return "count:" + list1.size();
+    }
+
+    private SenEntity convertEntity(SenInfo senInfo) {
+        SenEntity senEntity = new SenEntity();
+        senEntity.setName(senInfo.getName());
+        senEntity.setAddress(senInfo.getAddress());
+        senEntity.setBeginDate(senInfo.getBeginDate());
+        senEntity.setCode(senInfo.getCode());
+        senEntity.setPhone(senInfo.getPhone());
+        return senEntity;
     }
 
 
